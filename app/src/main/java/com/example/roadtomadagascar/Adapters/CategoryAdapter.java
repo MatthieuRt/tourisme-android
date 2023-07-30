@@ -1,5 +1,6 @@
 package com.example.roadtomadagascar.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.roadtomadagascar.Activities.DetailActivity;
+import com.example.roadtomadagascar.Activities.ListActivity;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
 import com.example.roadtomadagascar.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
@@ -39,6 +43,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Glide.with(holder.itemView.getContext())
                 .load(drawableResourceId)
                 .into(holder.picImg);
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ListActivity.class);
+            intent.putExtra("action","Categorie");
+            intent.putExtra("object",items.get(position));
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override

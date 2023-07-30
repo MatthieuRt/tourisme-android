@@ -22,7 +22,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView.Adapter adapterPopular,adapterCat;
     private RecyclerView recyclerViewPopular,recyclerViewCategory;
 
-    private TextView listLieux;
+    private TextView listLieux,listCat,listeRecherche;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +62,7 @@ public class Menu extends AppCompatActivity {
             intent.putExtra("action", "Lieux");
             startActivity(intent);
         });
+
+
     }
 }

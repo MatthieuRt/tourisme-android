@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.roadtomadagascar.Adapters.ListAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
+import com.example.roadtomadagascar.Domains.CategoryDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
@@ -39,8 +40,9 @@ public class ListActivity extends AppCompatActivity {
                     case "Lieux":
                         actionTxt.setText("Les lieux à Madagascar");
                         break;
-                    case "button2_action":
-                        actionTxt.setText("You clicked the 'Button 2' button.");
+                    case "Categorie":
+                        CategoryDomain c = (CategoryDomain) intent.getSerializableExtra("object");
+                        actionTxt.setText("Catégorie : "+c.getTitle());
                         break;
                     // Add other cases for other buttons...
                     default:

@@ -1,6 +1,8 @@
 package com.example.roadtomadagascar.Domains;
 
-public class CategoryDomain {
+import java.io.Serializable;
+
+public class CategoryDomain implements Serializable {
     private String title;
     private String picPath;
 
