@@ -18,7 +18,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="75dp"
                 android:background="@color/orange">
 
                 <ImageView
@@ -26,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -40,21 +40,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.361"
-                    app:layout_constraintStart_toEndOf="@+id/backBtn" />
+                    app:layout_constraintStart_toEndOf="@+id/backBtn"
+                    app:layout_constraintTop_toTopOf="@+id/backBtn" />
 
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/actionTxt"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/actionTxt"
                     app:layout_constraintTop_toTopOf="@+id/actionTxt"
-                    app:srcCompat="@drawable/bell"
-                    android:visibility="gone"/>
+                    app:srcCompat="@drawable/bell" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
