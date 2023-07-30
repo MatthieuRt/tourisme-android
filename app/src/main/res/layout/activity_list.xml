@@ -46,6 +46,16 @@
                     app:layout_constraintHorizontal_bias="0.361"
                     app:layout_constraintStart_toEndOf="@+id/backBtn" />
 
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/actionTxt"
+                    app:layout_constraintTop_toTopOf="@+id/actionTxt"
+                    app:srcCompat="@drawable/bell"
+                    android:visibility="gone"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView

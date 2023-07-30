@@ -42,6 +42,11 @@ public class ListActivity extends AppCompatActivity {
                         break;
                     case "Categorie":
                         CategoryDomain c = (CategoryDomain) intent.getSerializableExtra("object");
+                        ImageView im = findViewById(R.id.imageView8);
+                        im.setVisibility(View.VISIBLE);
+                        int resourceId = getResources().getIdentifier(c.getPicPath(), "drawable", getPackageName());
+                        im.setImageResource(resourceId);
+
                         actionTxt.setText("Catégorie : "+c.getTitle());
                         break;
                     // Add other cases for other buttons...
