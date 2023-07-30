@@ -22,7 +22,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView.Adapter adapterPopular,adapterCat;
     private RecyclerView recyclerViewPopular,recyclerViewCategory;
 
-    private TextView list;
+    private TextView listLieux;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +56,8 @@ public class Menu extends AppCompatActivity {
         adapterCat = new CategoryAdapter(catList);
         recyclerViewCategory.setAdapter(adapterCat);
 
-        list = findViewById(R.id.list);
-        list.setOnClickListener(view -> {
+        listLieux = findViewById(R.id.listLieux);
+        listLieux.setOnClickListener(view -> {
             Intent intent = new Intent(Menu.this, ListActivity.class);
             intent.putExtra("action", "Lieux");
             startActivity(intent);
