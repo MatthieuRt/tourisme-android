@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.roadtomadagascar.Adapters.ListAdapter;
@@ -19,6 +21,8 @@ public class ListActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter listAdapter,adapterCat;
     private RecyclerView recyclerViewPopular,recyclerViewCategory;
+
+    private ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,14 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
         }
+
+        ImageView backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         ArrayList<PopularDomain> items = new ArrayList<>();
         items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
