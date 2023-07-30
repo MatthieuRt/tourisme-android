@@ -2,10 +2,13 @@ package com.example.roadtomadagascar.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.roadtomadagascar.Domains.PopularDomain;
@@ -45,6 +48,15 @@ public class DetailActivity extends AppCompatActivity {
         }else{
             wifiTxt.setText("No-Wifi");
         }
+
+        VideoView video = findViewById(R.id.videoView);
+        String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.video;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(this);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
 
         int drawableResId = getResources().getIdentifier(item.getPic(),"drawable",getPackageName());
 
