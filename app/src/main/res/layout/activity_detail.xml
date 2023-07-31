@@ -235,7 +235,7 @@
                 <TextView
                     android:id="@+id/priceTxt"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="clip_vertical"
                     android:text="$1,200"

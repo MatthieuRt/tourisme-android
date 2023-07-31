@@ -249,7 +249,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView60"
+                        android:id="@+id/favorisBtn"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
@@ -264,7 +264,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView70"
+                        android:id="@+id/parametresBtn"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"

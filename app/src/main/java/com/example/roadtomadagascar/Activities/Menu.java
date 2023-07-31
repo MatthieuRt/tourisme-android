@@ -5,6 +5,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +29,8 @@ import com.example.roadtomadagascar.Adapters.CategoryAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
+import com.example.roadtomadagascar.Fragments.Favoris;
+import com.example.roadtomadagascar.Fragments.Parametres;
 import com.example.roadtomadagascar.R;
 
 import java.util.ArrayList;
@@ -37,7 +42,7 @@ public class Menu extends AppCompatActivity {
 
     private TextView listLieux, listCat, listeRecherche;
 
-    ImageView notif;
+    ImageView notif, favorisBtn, parametresBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +98,31 @@ public class Menu extends AppCompatActivity {
             intent.putExtra("action", "Lieux");
             startActivity(intent);
         });
+
+        favorisBtn = findViewById(R.id.favorisBtn);
+        parametresBtn = findViewById(R.id.parametresBtn);
+
+        favorisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new Favoris());
+            }
+        });
+
+        parametresBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //fragmentTransaction.replace(R.id.linearLayout6,fragment);
+        fragmentTransaction.commit();
     }
 
     public void makeNotification(){
