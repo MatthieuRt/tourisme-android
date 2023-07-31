@@ -105,7 +105,8 @@ public class Menu extends AppCompatActivity {
         favorisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Favoris());
+                Intent intent = new Intent(Menu.this, FavorisActivity.class);
+                startActivity(intent);
             }
         });
 
