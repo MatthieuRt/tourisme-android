@@ -1,22 +1,26 @@
 package com.example.roadtomadagascar.Domains;
 
-public class PlaceDomain {
+public class HotelDomain {
     private String title;
     private String location;
     private String description;
-    private int distance;
+    private int bed;
     private boolean guide;
     private double score;
     private String pic;
+    private boolean wifi;
+    private int price;
 
-    public PlaceDomain(String title, String location, String description, int distance, boolean guide, double score, String pic) {
+    public HotelDomain(String title, String location, String description, int bed, boolean guide, double score, String pic, boolean wifi, int price) {
         this.title = title;
         this.location = location;
         this.description = description;
-        this.distance = distance;
+        this.bed = bed;
         this.guide = guide;
         this.score = score;
         this.pic = pic;
+        this.wifi = wifi;
+        this.price = price;
     }
 
     public String getTitle() {
@@ -43,12 +47,12 @@ public class PlaceDomain {
         this.description = description;
     }
 
-    public int getDistance() {
-        return distance;
+    public int getBed() {
+        return bed;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setBed(int bed) {
+        this.bed = bed;
     }
 
     public boolean isGuide() {
@@ -73,5 +77,21 @@ public class PlaceDomain {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
