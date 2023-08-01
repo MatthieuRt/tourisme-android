@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -11,7 +12,7 @@ import com.example.roadtomadagascar.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    CheckBox checkBox;
+    CheckBox checkBox,checkBox2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkBox = findViewById(R.id.checkBox);
+        checkBox2 = findViewById(R.id.checkBox2);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -28,6 +30,18 @@ public class SettingsActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(newNightMode);
                     getDelegate().applyDayNight();
                     recreate();
+                }
+            }
+        });
+
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+                // Enable the vibrator by calling the vibrate method
+                if (vibrator != null) {
+                    vibrator.cancel();
                 }
             }
         });
