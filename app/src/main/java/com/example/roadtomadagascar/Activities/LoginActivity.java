@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         connexion=(Button)findViewById(R.id.btn_login);
         creation=(TextView)findViewById(R.id.creation_compte);
         mdp_oublie=(TextView)findViewById(R.id.mot_de_passe_oublie);
+
+
     }
 
     private void onClick(){
@@ -52,13 +54,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
         //Creation
         this.creation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginActivity.this.finish();
-                //Intent intent=new Intent(LoginActivity.this,Inscription.class);
-                //startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
 

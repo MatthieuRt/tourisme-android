@@ -113,8 +113,10 @@ public class Menu extends AppCompatActivity {
         parametresBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Menu.this, SettingsActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(Menu.this, SettingsActivity.class);
+                startActivity(intent);*/
+                replaceFragment(new Favoris());
+                System.out.println("--------------------------- CLICKED");
             }
         });
     }
@@ -122,7 +124,7 @@ public class Menu extends AppCompatActivity {
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.linearLayout6,fragment);
+        fragmentTransaction.replace(R.id.myLayout,fragment);
         fragmentTransaction.commit();
     }
 

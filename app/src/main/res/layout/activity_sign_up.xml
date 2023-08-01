@@ -176,19 +176,6 @@ tools:context=".Activities.SignUpActivity">
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-        <TextView
-            android:textColor="@color/blue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="J'ai un compte"
-            android:gravity="right"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/se_connecter"
-            />
         <Button
             android:id="@+id/btn_inscription"
             android:layout_width="match_parent"
