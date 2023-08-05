@@ -109,4 +109,51 @@ public class Dao {
         queue.add(stringRequest);
         return ret;
     }
+
+    public ArrayList<PlaceDomain> getPlaceByCat(Context context,String id) {
+        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+id; // Remplacez par l'URL de votre API
+        System.out.println("---------------------------------------------------------------------------- VOICI L URL "+url);
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        ArrayList<PlaceDomain> ret = new ArrayList<PlaceDomain>();
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response is: " + response);
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            for(int i =0;i<array.length();i++){
+                                JSONObject singleObject = array.getJSONObject(i);
+                                PlaceDomain p = new PlaceDomain(
+                                        singleObject.getString("_id"),
+                                        singleObject.getString("idCategorie"),
+                                        singleObject.getString("name"),
+                                        singleObject.getString("location"),
+                                        singleObject.getString("description"),
+                                        singleObject.getInt("distance"),
+                                        singleObject.getBoolean("isPopulaire"),
+                                        singleObject.getBoolean("guide"),
+                                        singleObject.getInt("score"),
+                                        "pic1"
+                                );
+                                ret.add(p);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("THIS DIDINT WORK");
+                error.printStackTrace();
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        return ret;
+    }
 }

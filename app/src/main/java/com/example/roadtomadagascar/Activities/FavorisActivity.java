@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.roadtomadagascar.Adapters.ListAdapter;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
@@ -36,10 +37,10 @@ public class FavorisActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
+        ArrayList<PlaceDomain> items = new ArrayList<>();
+        /*items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
         items.add(new PopularDomain("Allée des Baobabs","Morondava","Ceci est une description",1,false,5,"pic2",false,2500));
-        items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));
+        items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));*/
 
         recyclerViewPopular= findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

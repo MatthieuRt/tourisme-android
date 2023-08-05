@@ -1,6 +1,8 @@
 package com.example.roadtomadagascar.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,12 +12,19 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.example.roadtomadagascar.Adapters.HotelAdapter;
+import com.example.roadtomadagascar.Adapters.PlaceAdapter;
+import com.example.roadtomadagascar.Domains.HotelDomain;
 import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
+import java.util.ArrayList;
+
 public class detailPlaceActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapterHotel;
     private TextView titleTxt,locationTxt,guideTxt,descriptionTxt,scoreTxt;
     private PlaceDomain item;
     private ImageView picImg, backBtn;
@@ -58,6 +67,17 @@ public class detailPlaceActivity extends AppCompatActivity {
                 .into(picImg);
 
         backBtn.setOnClickListener(view -> finish());
+
+        ArrayList<HotelDomain> items = new ArrayList<HotelDomain>();
+
+        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
+        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
+        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
+
+        recyclerView = findViewById(R.id.view_hotels);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        adapterHotel = new HotelAdapter(items);
+        recyclerView.setAdapter(adapterHotel);
     }
 
     private void initView(){

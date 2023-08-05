@@ -10,11 +10,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.roadtomadagascar.Adapters.ListAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
+import com.example.roadtomadagascar.Dao.Dao;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -33,6 +45,7 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         TextView actionTxt = findViewById(R.id.actionTxt);
 
+
         if(intent != null){
             String action = intent.getStringExtra("action");
             if (action != null) {
@@ -46,8 +59,48 @@ public class ListActivity extends AppCompatActivity {
                         im.setVisibility(View.VISIBLE);
                         int resourceId = getResources().getIdentifier(c.getPicPath(), "drawable", getPackageName());
                         im.setImageResource(resourceId);
+                        actionTxt.setText(c.getTitle());
 
-                        actionTxt.setText("Catégorie : "+c.getTitle());
+                        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
+                        RequestQueue queue = Volley.newRequestQueue(this);
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        ArrayList<PlaceDomain> items = new ArrayList<PlaceDomain>();
+                                        try {
+                                            JSONArray array = new JSONArray(response);
+                                            for(int i =0;i<array.length();i++){
+                                                JSONObject singleObject = array.getJSONObject(i);
+                                                PlaceDomain p = new PlaceDomain(
+                                                        singleObject.getString("_id"),
+                                                        singleObject.getString("idCategorie"),
+                                                        singleObject.getString("name"),
+                                                        singleObject.getString("location"),
+                                                        singleObject.getString("description"),
+                                                        singleObject.getInt("distance"),
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getBoolean("guide"),
+                                                        singleObject.getInt("score"),
+                                                        "pic1"
+                                                );
+                                                items.add(p);
+                                            }
+                                            listAdapter=new ListAdapter(items);
+                                            recyclerViewPopular.setAdapter(listAdapter);
+
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println("THIS DIDINT WORK");
+                                error.printStackTrace();
+                            }
+                        });
+                        queue.add(stringRequest);
                         break;
                     // Add other cases for other buttons...
                     default:
@@ -65,14 +118,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
-        items.add(new PopularDomain("Allée des Baobabs","Morondava","Ceci est une description",1,false,5,"pic2",false,2500));
-        items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));
-
         recyclerViewPopular= findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        listAdapter=new ListAdapter(items);
-        recyclerViewPopular.setAdapter(listAdapter);
     }
 }

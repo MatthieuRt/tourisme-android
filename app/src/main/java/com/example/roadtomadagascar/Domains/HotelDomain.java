@@ -1,6 +1,8 @@
 package com.example.roadtomadagascar.Domains;
 
-public class HotelDomain {
+import java.io.Serializable;
+
+public class HotelDomain implements Serializable {
     private String title;
     private String location;
     private String description;

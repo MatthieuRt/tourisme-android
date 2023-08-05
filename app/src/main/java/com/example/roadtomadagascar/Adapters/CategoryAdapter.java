@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.roadtomadagascar.Activities.DetailActivity;
 import com.example.roadtomadagascar.Activities.ListActivity;
+import com.example.roadtomadagascar.Dao.Dao;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
 import com.example.roadtomadagascar.R;
 
