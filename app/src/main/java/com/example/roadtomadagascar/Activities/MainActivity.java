@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.example.roadtomadagascar.R;
 
+import util.SessionUser;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,5 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         ConstraintLayout introBtn=findViewById(R.id.introBtn);
         introBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,Menu.class)));
+        //SessionUser.getSessionUser();
     }
 }
