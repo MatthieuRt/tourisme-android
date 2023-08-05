@@ -67,7 +67,7 @@ public class Menu extends AppCompatActivity {
         });
         System.out.println("----------- on est la");
         Dao d = new Dao();
-        d.getData(this);
+        d.getPlaceList(this);
         initRecyclerView();
 
 
@@ -122,7 +122,8 @@ public class Menu extends AppCompatActivity {
                 /*Intent intent = new Intent(Menu.this, SettingsActivity.class);
                 startActivity(intent);*/
                 replaceFragment(new Favoris());
-                System.out.println("--------------------------- CLICKED");
+                System.out.println("-" +
+                        "-------------------------- CLICKED");
             }
         });
     }
