@@ -26,9 +26,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.roadtomadagascar.Adapters.CategoryAdapter;
+import com.example.roadtomadagascar.Adapters.PlaceAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
 import com.example.roadtomadagascar.Dao.Dao;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.Fragments.Favoris;
 import com.example.roadtomadagascar.Fragments.Parametres;
@@ -38,7 +40,7 @@ import java.util.ArrayList;
 
 public class Menu extends AppCompatActivity {
 
-    private RecyclerView.Adapter adapterPopular, adapterCat;
+    private RecyclerView.Adapter adapterPopular, adapterCat, adapterPlace;
     private RecyclerView recyclerViewPopular, recyclerViewCategory;
 
     private TextView listLieux, listCat, listeRecherche;
@@ -65,32 +67,33 @@ public class Menu extends AppCompatActivity {
                 makeNotification();
             }
         });
-        System.out.println("----------- on est la");
-        Dao d = new Dao();
-        d.getPlaceList(this);
         initRecyclerView();
-
-
     }
 
     private void initRecyclerView() {
-        ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("Plage d'Antsanitia", "Majunga", "Ceci est une description", 2, true, 4.8, "pic1", true, 1000));
+        Dao d = new Dao();
+
+
+        ArrayList<PlaceDomain> items = new ArrayList<>();
+        items = d.getPlaceList(this);
+        /*items.add(new PopularDomain("Plage d'Antsanitia", "Majunga", "Ceci est une description", 2, true, 4.8, "pic1", true, 1000));
         items.add(new PopularDomain("Allée des Baobabs", "Morondava", "Ceci est une description", 1, false, 5, "pic2", false, 2500));
         items.add(new PopularDomain("Foulpointe", "Foulpointe", "Ceci est une description", 3, true, 4.8, "pic1", true, 1000));
-
+*/
         recyclerViewPopular = findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapterPopular = new PopularAdapter(items);
-        recyclerViewPopular.setAdapter(adapterPopular);
+        adapterPlace = new PlaceAdapter(items);
+        recyclerViewPopular.setAdapter(adapterPlace);
+
 
         ArrayList<CategoryDomain> catList = new ArrayList<>();
+        catList = d.getListeCategories(this);
 
-        catList.add(new CategoryDomain("Plages", "cat1"));
+        /*catList.add(new CategoryDomain("Plages", "cat1"));
         catList.add(new CategoryDomain("Camps", "cat2"));
         catList.add(new CategoryDomain("Forest", "cat3"));
         catList.add(new CategoryDomain("Desert", "cat4"));
-        catList.add(new CategoryDomain("Mountain", "cat5"));
+        catList.add(new CategoryDomain("Mountain", "cat5"));*/
 
         recyclerViewCategory = findViewById(R.id.view_cat);
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

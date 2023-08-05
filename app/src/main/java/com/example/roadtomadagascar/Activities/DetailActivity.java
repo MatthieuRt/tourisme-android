@@ -11,13 +11,14 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
 public class DetailActivity extends AppCompatActivity {
 
     private TextView titleTxt,locationTxt,bedTxt,guideTxt,wifiTxt,descriptionTxt,scoreTxt;
-    private PopularDomain item;
+    private PlaceDomain item;
     private ImageView picImg, backBtn;
 
     @Override
@@ -30,12 +31,12 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setVariable(){
-        item = (PopularDomain) getIntent().getSerializableExtra("object");
+        item = (PlaceDomain) getIntent().getSerializableExtra("object");
 
         titleTxt.setText(item.getTitle());
         scoreTxt.setText(""+(int) item.getScore());
         locationTxt.setText(item.getLocation());
-        bedTxt.setText(item.getBed()+"Bed");
+        //bedTxt.setText(item.getBed()+"Bed");
         descriptionTxt.setText(item.getDescription());
 
         if(item.isGuide()){
@@ -43,11 +44,11 @@ public class DetailActivity extends AppCompatActivity {
         }else{
             guideTxt.setText("No-Guide");
         }
-        if(item.isWifi()){
+        /*if(item.isWifi()){
             wifiTxt.setText("Wifi");
         }else{
             wifiTxt.setText("No-Wifi");
-        }
+        }*/
 
         VideoView video = findViewById(R.id.videoView);
         String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.video;

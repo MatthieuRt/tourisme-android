@@ -10,25 +10,26 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
 public class detailPlaceActivity extends AppCompatActivity {
 
     private TextView titleTxt,locationTxt,guideTxt,descriptionTxt,scoreTxt;
-    private PopularDomain item;
+    private PlaceDomain item;
     private ImageView picImg, backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_place);
-        setVariable();
         initView();
+        setVariable();
     }
 
     private void setVariable(){
-        item = (PopularDomain) getIntent().getSerializableExtra("object");
+        item = (PlaceDomain) getIntent().getSerializableExtra("object");
 
         titleTxt.setText(item.getTitle());
         scoreTxt.setText(""+(int) item.getScore());

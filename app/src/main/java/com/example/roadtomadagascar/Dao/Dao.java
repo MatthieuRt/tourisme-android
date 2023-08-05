@@ -50,7 +50,7 @@ public class Dao {
                                         singleObject.getBoolean("isPopulaire"),
                                         singleObject.getBoolean("guide"),
                                         singleObject.getInt("score"),
-                                        "drawable/pic1"
+                                        "pic1"
                                 );
                                 ret.add(p);
                             }
@@ -89,7 +89,8 @@ public class Dao {
                                 CategoryDomain p = new CategoryDomain(
                                     singleObject.getString("_id"),
                                     singleObject.getString("titre"),
-                                    singleObject.getString("url")
+                                    //singleObject.getString("url")
+                                        "cat1"
                                 );
                                 ret.add(p);
                             }

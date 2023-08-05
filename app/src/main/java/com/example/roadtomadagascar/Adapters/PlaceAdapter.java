@@ -14,15 +14,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.example.roadtomadagascar.Activities.DetailActivity;
+import com.example.roadtomadagascar.Activities.detailPlaceActivity;
+import com.example.roadtomadagascar.Domains.PlaceDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.R;
 
 import java.util.ArrayList;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> {
-    ArrayList<PopularDomain> items;
+    ArrayList<PlaceDomain> items;
 
-    public PlaceAdapter(ArrayList<PopularDomain> items) {
+    public PlaceAdapter(ArrayList<PlaceDomain> items) {
         this.items = items;
     }
 
@@ -46,7 +48,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
+            Intent intent = new Intent(holder.itemView.getContext(), detailPlaceActivity.class);
             intent.putExtra("object",items.get(position));
             holder.itemView.getContext().startActivity(intent);
         });
