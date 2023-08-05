@@ -202,7 +202,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/intro_background"
-                    android:text="Réserver"
+                    android:text="Voir les hôtels"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />

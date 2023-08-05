@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.example.roadtomadagascar.Adapters.CategoryAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
+import com.example.roadtomadagascar.Dao.Dao;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
 import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.Fragments.Favoris;
@@ -64,7 +65,12 @@ public class Menu extends AppCompatActivity {
                 makeNotification();
             }
         });
+        System.out.println("----------- on est la");
+        Dao d = new Dao();
+        d.getData(this);
         initRecyclerView();
+
+
     }
 
     private void initRecyclerView() {
