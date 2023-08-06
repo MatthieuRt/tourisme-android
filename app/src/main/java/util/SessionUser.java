@@ -1,8 +1,12 @@
 package util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 public final class SessionUser {
     private String idUser;
     private String username;
+    private String erroMessage = null;
     private static SessionUser sessionUser= null;
     private SessionUser(){}
 
@@ -18,9 +22,22 @@ public final class SessionUser {
         return  idUser;
     }
     public void setUsername(String id){
-        idUser = id;
+        username = id;
     }
     public String getUsername(){
         return  idUser;
+    }
+    public String getErroMessage(){
+        return  erroMessage;
+    }
+    public void setErroMessage(String err){
+        erroMessage = err;
+    }
+
+    public static void saveSession(Context context, String identifiant) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("session", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("identifiant", identifiant);
+        editor.apply();
     }
 }

@@ -2,6 +2,7 @@ package com.example.roadtomadagascar.service;
 
 import android.content.Context;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,17 +32,13 @@ public class IdentificationService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        final StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Process the response from the server
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
                                 // Login successful
                                 JSONObject userData = jsonResponse.getJSONObject("data");
                                 String userId = userData.getString("_id");
@@ -50,13 +47,8 @@ public class IdentificationService {
                                 sessionUser.setIdUser(userId);
                                 sessionUser.setUsername(username);
                                 // Callback to indicate successful login
+                                SessionUser.saveSession(context, identifiant);
                                 loginCallback.onSuccess();
-                            } else {
-                                // Login failed
-                                String message = jsonResponse.getString("message");
-                                // Callback to indicate login failure with the error message
-                                loginCallback.onError(message);
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             // Callback to indicate login failure with a general error message
@@ -66,8 +58,17 @@ public class IdentificationService {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Callback to indicate login failure with a general error message
-                loginCallback.onError("An error occurred during login.");
+                // Check if the error contains a network response
+                if (error.networkResponse != null) {
+                    int statusCode = error.networkResponse.statusCode;
+                    // Callback to indicate login failure with the error message and status code
+                    loginCallback.onError("Login failed with status code: " + statusCode);
+                    sessionUser.setErroMessage(new String(error.networkResponse.data));
+
+                } else {
+                    // Callback to indicate login failure with a general error message
+                    loginCallback.onError("An error occurred during login.");
+                }
                 error.printStackTrace();
             }
         }) {
