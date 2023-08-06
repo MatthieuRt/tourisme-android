@@ -27,6 +27,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.roadtomadagascar.Adapters.CategoryAdapter;
 import com.example.roadtomadagascar.Adapters.PlaceAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
@@ -37,6 +43,10 @@ import com.example.roadtomadagascar.Domains.PopularDomain;
 import com.example.roadtomadagascar.Fragments.Favoris;
 import com.example.roadtomadagascar.Fragments.Parametres;
 import com.example.roadtomadagascar.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -78,21 +88,96 @@ public class Menu extends AppCompatActivity {
 
 
         ArrayList<PlaceDomain> items = new ArrayList<>();
-        items = d.getPlaceList(this);
+
+        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/list"; // Remplacez par l'URL de votre API
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response is: " + response);
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            for(int i =0;i<array.length();i++){
+                                JSONObject singleObject = array.getJSONObject(i);
+                                PlaceDomain p = new PlaceDomain(
+                                        singleObject.getString("_id"),
+                                        singleObject.getString("idCategorie"),
+                                        singleObject.getString("name"),
+                                        singleObject.getString("location"),
+                                        singleObject.getString("description"),
+                                        singleObject.getInt("distance"),
+                                        singleObject.getBoolean("guide"),
+                                        singleObject.getInt("score"),
+                                        "pic1",
+                                        singleObject.getBoolean("isPopulaire"),
+                                        singleObject.getString("url")
+                                );
+                                items.add(p);
+                                adapterPlace = new PlaceAdapter(items);
+                                recyclerViewPopular.setAdapter(adapterPlace);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("THIS DIDINT WORK");
+                error.printStackTrace();
+            }
+        });
+        queue.add(stringRequest);
 
         recyclerViewPopular = findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapterPlace = new PlaceAdapter(items);
-        recyclerViewPopular.setAdapter(adapterPlace);
+
 
         ArrayList<CategoryDomain> catList = new ArrayList<>();
-        catList = d.getListeCategories(this);
+        url = "https://back-tourisme-git-main-matthieurt.vercel.app/categorie/list"; // Remplacez par l'URL de votre API
+        // Instantiate the RequestQueue.
+        queue = Volley.newRequestQueue(this);
+        ArrayList<CategoryDomain> ret = new ArrayList<CategoryDomain>();
+// Request a string response from the provided URL.
+        stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response is: " + response);
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            for(int i =0;i<array.length();i++){
+                                JSONObject singleObject = array.getJSONObject(i);
+                                CategoryDomain p = new CategoryDomain(
+                                        singleObject.getString("_id"),
+                                        singleObject.getString("titre"),
+                                        singleObject.getString("url")
+                                );
+                                catList.add(p);
+
+                                adapterCat = new CategoryAdapter(catList);
+                                recyclerViewCategory.setAdapter(adapterCat);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("THIS DIDINT WORK");
+                error.printStackTrace();
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
 
         recyclerViewCategory = findViewById(R.id.view_cat);
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        adapterCat = new CategoryAdapter(catList);
-        recyclerViewCategory.setAdapter(adapterCat);
 
         listLieux = findViewById(R.id.listLieux);
         listLieux.setOnClickListener(view -> {

@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.roadtomadagascar.Adapters.ListAdapter;
+import com.example.roadtomadagascar.Adapters.PlaceAdapter;
 import com.example.roadtomadagascar.Adapters.PopularAdapter;
 import com.example.roadtomadagascar.Dao.Dao;
 import com.example.roadtomadagascar.Domains.CategoryDomain;
@@ -52,6 +53,49 @@ public class ListActivity extends AppCompatActivity {
                 switch (action) {
                     case "Lieux":
                         actionTxt.setText("Les lieux à Madagascar");
+                        ArrayList<PlaceDomain> items = new ArrayList<>();
+
+                        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/list"; // Remplacez par l'URL de votre API
+                        RequestQueue queue = Volley.newRequestQueue(this);
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        // Display the first 500 characters of the response string.
+                                        System.out.println("Response is: " + response);
+                                        try {
+                                            JSONArray array = new JSONArray(response);
+                                            for(int i =0;i<array.length();i++){
+                                                JSONObject singleObject = array.getJSONObject(i);
+                                                PlaceDomain p = new PlaceDomain(
+                                                        singleObject.getString("_id"),
+                                                        singleObject.getString("idCategorie"),
+                                                        singleObject.getString("name"),
+                                                        singleObject.getString("location"),
+                                                        singleObject.getString("description"),
+                                                        singleObject.getInt("distance"),
+                                                        singleObject.getBoolean("guide"),
+                                                        singleObject.getInt("score"),
+                                                        "pic1",
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getString("url")
+                                                );
+                                                items.add(p);
+                                                listAdapter=new ListAdapter(items);
+                                                recyclerViewPopular.setAdapter(listAdapter);
+                                            }
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println("THIS DIDINT WORK");
+                                error.printStackTrace();
+                            }
+                        });
+                        queue.add(stringRequest);
                         break;
                     case "Categorie":
                         CategoryDomain c = (CategoryDomain) intent.getSerializableExtra("object");
@@ -61,9 +105,9 @@ public class ListActivity extends AppCompatActivity {
                         im.setImageResource(resourceId);
                         actionTxt.setText(c.getTitle());
 
-                        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
-                        RequestQueue queue = Volley.newRequestQueue(this);
-                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                         url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
+                         queue = Volley.newRequestQueue(this);
+                         stringRequest = new StringRequest(Request.Method.GET, url,
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
