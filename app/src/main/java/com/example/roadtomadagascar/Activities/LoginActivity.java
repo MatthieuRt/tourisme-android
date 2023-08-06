@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         creation=(TextView)findViewById(R.id.creation_compte);
         mdp_oublie=(TextView)findViewById(R.id.mot_de_passe_oublie);
 
-
     }
 
     private void onClick(){
@@ -73,8 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-
-
 
         //Creation
         this.creation.setOnClickListener(new View.OnClickListener() {
