@@ -89,8 +89,7 @@ public class Dao {
                                 CategoryDomain p = new CategoryDomain(
                                     singleObject.getString("_id"),
                                     singleObject.getString("titre"),
-                                    //singleObject.getString("url")
-                                        "cat1"
+                                    singleObject.getString("url")
                                 );
                                 ret.add(p);
                             }

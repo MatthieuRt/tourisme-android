@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onClick(){
         //Connexion
-        this.connexion.setOnClickListener(new View.OnClickListener() {
+        /*this.connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(Login.this, "Creation", Toast.LENGTH_SHORT).show();
@@ -67,9 +67,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onError(String errorMessage) {
                         // Gérer les erreurs de login ici, afficher un message d'erreur par exemple
-                        Toast.makeText(LoginActivity.this, "Login failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });*/
+        this.connexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, Menu.class);
+                startActivity(intent);
             }
         });
 

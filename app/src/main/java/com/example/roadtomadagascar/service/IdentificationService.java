@@ -19,7 +19,8 @@ public class IdentificationService {
 
     public void login(String identifiant, String pass, Context context, final LoginCallback loginCallback) {
         SessionUser sessionUser = SessionUser.getSessionUser();
-
+        System.out.println("VOICI L IDENTIFIANT    "+identifiant);
+        System.out.println("VOICI LE MOT DE PASSE    "+pass);
         String url = "https://back-tourisme-git-main-matthieurt.vercel.app/user/login"; // Remplacez par l'URL de votre API
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -62,7 +63,7 @@ public class IdentificationService {
                 if (error.networkResponse != null) {
                     int statusCode = error.networkResponse.statusCode;
                     // Callback to indicate login failure with the error message and status code
-                    loginCallback.onError("Login failed with status code: " + statusCode);
+                    loginCallback.onError("Pseudo et/ou mot de passe erroné(s), veuillez réessayer");
                     sessionUser.setErroMessage(new String(error.networkResponse.data));
 
                 } else {
