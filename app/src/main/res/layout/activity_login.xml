@@ -34,7 +34,14 @@
             android:id="@+id/imageView2"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/road_to_madagascar_30_07_2023" />
+            app:srcCompat="@drawable/road_to_madagascar_06_08_2023_1" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            app:srcCompat="@drawable/lemur_say_hello_icon_cartoon_style_vector_35163464_removebg_preview" />
+
         <LinearLayout
             android:layout_gravity="center"
             android:gravity="center"
@@ -142,6 +149,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/formulaire"
         >
+
         <TextView
             android:textSize="15dp"
             android:layout_width="wrap_content"
@@ -156,5 +164,7 @@
             android:textSize="15dp"
             android:textStyle="bold"
             />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
