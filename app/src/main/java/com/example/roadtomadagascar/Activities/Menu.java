@@ -22,6 +22,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +46,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView recyclerViewPopular, recyclerViewCategory;
 
     private TextView listLieux, listCat, listeRecherche;
+    private EditText search;
 
     ImageView notif, favorisBtn, parametresBtn;
 
@@ -76,24 +79,14 @@ public class Menu extends AppCompatActivity {
 
         ArrayList<PlaceDomain> items = new ArrayList<>();
         items = d.getPlaceList(this);
-        /*items.add(new PopularDomain("Plage d'Antsanitia", "Majunga", "Ceci est une description", 2, true, 4.8, "pic1", true, 1000));
-        items.add(new PopularDomain("Allée des Baobabs", "Morondava", "Ceci est une description", 1, false, 5, "pic2", false, 2500));
-        items.add(new PopularDomain("Foulpointe", "Foulpointe", "Ceci est une description", 3, true, 4.8, "pic1", true, 1000));
-*/
+
         recyclerViewPopular = findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapterPlace = new PlaceAdapter(items);
         recyclerViewPopular.setAdapter(adapterPlace);
 
-
         ArrayList<CategoryDomain> catList = new ArrayList<>();
         catList = d.getListeCategories(this);
-
-        /*catList.add(new CategoryDomain("Plages", "cat1"));
-        catList.add(new CategoryDomain("Camps", "cat2"));
-        catList.add(new CategoryDomain("Forest", "cat3"));
-        catList.add(new CategoryDomain("Desert", "cat4"));
-        catList.add(new CategoryDomain("Mountain", "cat5"));*/
 
         recyclerViewCategory = findViewById(R.id.view_cat);
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -106,6 +99,18 @@ public class Menu extends AppCompatActivity {
             Intent intent = new Intent(Menu.this, ListActivity.class);
             intent.putExtra("action", "Lieux");
             startActivity(intent);
+        });
+
+        search = findViewById(R.id.search);
+
+        search.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                Intent intent = new Intent(this, ListActivity.class);
+                intent.putExtra("action","recherche");
+                intent.putExtra("object",search.getText().toString());
+                startActivity(intent);
+            }
+            return false;
         });
 
         favorisBtn = findViewById(R.id.favorisBtn);
@@ -125,8 +130,6 @@ public class Menu extends AppCompatActivity {
                 /*Intent intent = new Intent(Menu.this, SettingsActivity.class);
                 startActivity(intent);*/
                 replaceFragment(new Favoris());
-                System.out.println("-" +
-                        "-------------------------- CLICKED");
             }
         });
     }
