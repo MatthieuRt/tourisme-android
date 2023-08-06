@@ -52,7 +52,8 @@ public class detailPlaceActivity extends AppCompatActivity {
         }
 
         VideoView video = findViewById(R.id.videoView);
-        String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.video;
+        String videoPath = "android.resource://"+getPackageName()+"/raw/"+item.getUrl();
+        System.out.println("HERE IS VIDEO   "+videoPath);
         Uri uri = Uri.parse(videoPath);
         video.setVideoURI(uri);
 

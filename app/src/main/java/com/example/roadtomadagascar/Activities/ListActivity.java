@@ -79,10 +79,11 @@ public class ListActivity extends AppCompatActivity {
                                                         singleObject.getString("location"),
                                                         singleObject.getString("description"),
                                                         singleObject.getInt("distance"),
-                                                        singleObject.getBoolean("isPopulaire"),
                                                         singleObject.getBoolean("guide"),
                                                         singleObject.getInt("score"),
-                                                        "pic1"
+                                                        "pic1",
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getString("url")
                                                 );
                                                 items.add(p);
                                             }
@@ -127,10 +128,11 @@ public class ListActivity extends AppCompatActivity {
                                                         singleObject.getString("location"),
                                                         singleObject.getString("description"),
                                                         singleObject.getInt("distance"),
-                                                        singleObject.getBoolean("isPopulaire"),
                                                         singleObject.getBoolean("guide"),
                                                         singleObject.getInt("score"),
-                                                        "pic1"
+                                                        "pic1",
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getString("url")
                                                 );
                                                 items.add(p);
                                             }

@@ -13,18 +13,10 @@ public class PlaceDomain implements Serializable {
     private double score;
     private String pic;
     private boolean isPopulaire;
+    private String url;
 
-    public PlaceDomain(String title, String location, String description, int distance, boolean guide, double score, String pic) {
-        this.title = title;
-        this.location = location;
-        this.description = description;
-        this.distance = distance;
-        this.guide = guide;
-        this.score = score;
-        this.pic = pic;
-    }
 
-    public PlaceDomain(String id, String idCategorie, String title, String location, String description, int distance, boolean isPopulaire, boolean guide, double score, String pic) {
+    public PlaceDomain(String id, String idCategorie, String title, String location, String description, int distance, boolean guide, double score, String pic, boolean isPopulaire, String url) {
         this.id = id;
         this.idCategorie = idCategorie;
         this.title = title;
@@ -35,7 +27,9 @@ public class PlaceDomain implements Serializable {
         this.score = score;
         this.pic = pic;
         this.isPopulaire = isPopulaire;
+        this.url = url;
     }
+
 
     public String getId() {
         return id;
@@ -107,5 +101,21 @@ public class PlaceDomain implements Serializable {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public boolean isPopulaire() {
+        return isPopulaire;
+    }
+
+    public void setPopulaire(boolean populaire) {
+        isPopulaire = populaire;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
