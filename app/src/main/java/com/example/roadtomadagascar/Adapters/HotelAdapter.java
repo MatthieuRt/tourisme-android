@@ -50,6 +50,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
+            intent.putExtra("object",items.get(position));
             holder.itemView.getContext().startActivity(intent);
         });
     }

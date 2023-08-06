@@ -26,9 +26,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        setVariable();
-        initView();
 
+        initView();
+        setVariable();
     }
 
     private void setVariable(){
@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         titleTxt.setText(item.getTitle());
         scoreTxt.setText(""+(int) item.getScore());
         locationTxt.setText(item.getLocation());
-        //bedTxt.setText(item.getBed()+"Bed");
+        bedTxt.setText(item.getBed()+" lits");
         descriptionTxt.setText(item.getDescription());
 
         if(item.isGuide()){
