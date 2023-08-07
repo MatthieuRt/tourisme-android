@@ -92,7 +92,7 @@
                     android:textSize="17sp" />
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageview7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/star2" />
@@ -249,19 +249,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="150dp"
-                    android:layout_weight="1"
-                    android:text="Vidéo : "
-                    android:textColor="@color/black"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,13 +266,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <VideoView
-                            android:id="@+id/videoView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </FrameLayout>
+                        app:layout_constraintTop_toTopOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 

@@ -92,11 +92,12 @@
             app:hintTextColor="@color/orange"
 
             >
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/pseudo"
+                android:id="@+id/mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:text="andrianmattax@gmail.com" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,8 +117,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
         <TextView

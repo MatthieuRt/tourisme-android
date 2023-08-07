@@ -51,15 +51,6 @@ public class DetailActivity extends AppCompatActivity {
             wifiTxt.setText("No-Wifi");
         }
 
-        VideoView video = findViewById(R.id.videoView);
-        String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.video;
-        Uri uri = Uri.parse(videoPath);
-        video.setVideoURI(uri);
-
-        MediaController mediaController = new MediaController(this);
-        video.setMediaController(mediaController);
-        mediaController.setAnchorView(video);
-
         int drawableResId = getResources().getIdentifier(item.getPic(),"drawable",getPackageName());
 
         Glide.with(this)

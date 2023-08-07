@@ -57,7 +57,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/actionTxt"
                     app:layout_constraintTop_toTopOf="@+id/actionTxt"
-                    app:srcCompat="@drawable/search_icon" />
+                    app:srcCompat="@drawable/lemur_say_hello_icon_cartoon_style_vector_35163464_removebg_preview" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

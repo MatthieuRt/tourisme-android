@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initView(){
 
         //init View
-        pseudo=(EditText)findViewById(R.id.pseudo);
+        pseudo=(EditText)findViewById(R.id.mail);
         password=(EditText)findViewById(R.id.password);
         connexion=(Button)findViewById(R.id.btn_login);
         creation=(TextView)findViewById(R.id.creation_compte);
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onClick(){
         //Connexion
-        /*this.connexion.setOnClickListener(new View.OnClickListener() {
+        this.connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(Login.this, "Creation", Toast.LENGTH_SHORT).show();
@@ -71,14 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
-        this.connexion.setOnClickListener(new View.OnClickListener() {
+        });
+        /*this.connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, Menu.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //Creation
         this.creation.setOnClickListener(new View.OnClickListener() {

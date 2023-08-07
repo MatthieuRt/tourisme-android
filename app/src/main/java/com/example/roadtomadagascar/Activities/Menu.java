@@ -212,9 +212,9 @@ public class Menu extends AppCompatActivity {
         parametresBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(Menu.this, SettingsActivity.class);
-                startActivity(intent);*/
-                replaceFragment(new Favoris());
+                Intent intent = new Intent(Menu.this, SettingsActivity.class);
+                startActivity(intent);
+                //replaceFragment(new Favoris());
             }
         });
     }
