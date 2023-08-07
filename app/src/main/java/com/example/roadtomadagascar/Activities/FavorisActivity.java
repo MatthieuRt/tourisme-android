@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import util.SessionUser;
 
@@ -53,11 +51,10 @@ public class FavorisActivity extends AppCompatActivity {
             }
         });
         listFavoris = new ArrayList<PlaceDomain>();
-        ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
-        //items.add(new PopularDomain("Allée des Baobabs","Morondava","Ceci est une description",1,false,5,"pic2",false,2500));
-        //items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));
-
+        ArrayList<PlaceDomain> items = new ArrayList<>();
+        /*items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
+        items.add(new PopularDomain("Allée des Baobabs","Morondava","Ceci est une description",1,false,5,"pic2",false,2500));
+        items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));*/
         String url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/list";
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -109,7 +106,7 @@ public class FavorisActivity extends AppCompatActivity {
         queue.add(stringRequest);
         recyclerViewPopular= findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        listAdapter=new ListAdapter(items);
+        listAdapter=new ListAdapter(listFavoris);
         recyclerViewPopular.setAdapter(listAdapter);
     }
 }

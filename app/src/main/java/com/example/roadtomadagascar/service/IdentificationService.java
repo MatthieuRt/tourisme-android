@@ -131,8 +131,7 @@ public class IdentificationService {
                             JSONObject jsonResponse = new JSONObject(response);
                             // Login successful
                             System.out.println(jsonResponse);
-                            JSONArray success = jsonResponse.getJSONArray("success");
-                            JSONObject userData = success.getJSONObject(0);
+                            JSONObject userData = jsonResponse.getJSONObject("success");
                             String userId = userData.getString("_id");
                             String username = userData.getString("nom");
                             List<String > list = new ArrayList<>();

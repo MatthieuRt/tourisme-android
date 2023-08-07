@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initView(){
 
         //init View
-        pseudo=(EditText)findViewById(R.id.pseudo);
+        pseudo=(EditText)findViewById(R.id.mail);
         password=(EditText)findViewById(R.id.password);
         connexion=(Button)findViewById(R.id.btn_login);
         creation=(TextView)findViewById(R.id.creation_compte);

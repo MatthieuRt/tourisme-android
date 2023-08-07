@@ -24,14 +24,16 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         btn_inscription = findViewById(R.id.btn_inscription);
-        //mail = findViewById(R.id.editTextMail);
-        //nom = findViewById(R.id.editTextNom);
-        //prenom = findViewById(R.id.editTextPrenom);
-        //password = findViewById(R.id.editTextPassword);
+        mail = findViewById(R.id.mail);
+        nom = findViewById(R.id.nom);
+        prenom = findViewById(R.id.prenom);
+        //age =findViewById(R.id.age);
+        password = findViewById(R.id.password);
+        //errorMessage = findViewById(R.id.errorMessage);
         btn_inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //récupération des données utilisateur
+                // Récupération des données utilisateur
                 String mail = SignUpActivity.this.mail.getText().toString();
                 String prenom = SignUpActivity.this.prenom.getText().toString();
                 String nom = SignUpActivity.this.nom.getText().toString();
@@ -48,12 +50,10 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onError(String errorMessage) {
-                        SignUpActivity.this.errorMessage.setText(errorMessage);
+                        //SignUpActivity.this.errorMessage.setText(errorMessage);
                         Toast.makeText(SignUpActivity.this, "Erreur d'inscription : " + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
             }
         });
     }
