@@ -46,7 +46,6 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         TextView actionTxt = findViewById(R.id.actionTxt);
 
-
         if(intent != null){
             String action = intent.getStringExtra("action");
             if (action != null) {
@@ -105,6 +104,46 @@ public class ListActivity extends AppCompatActivity {
                         im.setImageResource(resourceId);
                         actionTxt.setText(c.getTitle());
 
+                         url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
+                         queue = Volley.newRequestQueue(this);
+                         stringRequest = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        ArrayList<PlaceDomain> items = new ArrayList<PlaceDomain>();
+                                        try {
+                                            JSONArray array = new JSONArray(response);
+                                            for(int i =0;i<array.length();i++){
+                                                JSONObject singleObject = array.getJSONObject(i);
+                                                PlaceDomain p = new PlaceDomain(
+                                                        singleObject.getString("_id"),
+                                                        singleObject.getString("idCategorie"),
+                                                        singleObject.getString("name"),
+                                                        singleObject.getString("location"),
+                                                        singleObject.getString("description"),
+                                                        singleObject.getInt("distance"),
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getBoolean("guide"),
+                                                        singleObject.getInt("score"),
+                                                        "pic1"
+                                                );
+                                                items.add(p);
+                                            }
+                                            listAdapter=new ListAdapter(items);
+                                            recyclerViewPopular.setAdapter(listAdapter);
+
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println("THIS DIDINT WORK");
+                                error.printStackTrace();
+                            }
+                        });
+                        queue.add(stringRequest);
                          url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
                          queue = Volley.newRequestQueue(this);
                          stringRequest = new StringRequest(Request.Method.GET, url,

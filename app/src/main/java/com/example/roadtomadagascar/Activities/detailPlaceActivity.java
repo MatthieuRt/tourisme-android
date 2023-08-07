@@ -11,6 +11,12 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.roadtomadagascar.Adapters.HotelAdapter;
 import com.example.roadtomadagascar.Adapters.PlaceAdapter;
@@ -21,6 +27,15 @@ import com.example.roadtomadagascar.R;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import util.SessionUser;
+
 public class detailPlaceActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -28,6 +43,7 @@ public class detailPlaceActivity extends AppCompatActivity {
     private TextView titleTxt,locationTxt,guideTxt,descriptionTxt,scoreTxt;
     private PlaceDomain item;
     private ImageView picImg, backBtn;
+    private ImageView addFavoris;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,5 +105,72 @@ public class detailPlaceActivity extends AppCompatActivity {
         scoreTxt = findViewById(R.id.scoreTxt);
         picImg = findViewById(R.id.picImg);
         backBtn = findViewById(R.id.backBtn);
+        //addFavoris = findViewById(R.id.);
+
     }
+    private void ajoutFavoris(String touristSpotId){
+        SessionUser sessionUser = SessionUser.getSessionUser();
+        String url = "https://back-tourisme-git-main-matthieurt.vercel.app/user/addfavoris";
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(detailPlaceActivity.this);
+
+        // Create JSON object to add favoris
+        JSONObject jsonAddFavoris = new JSONObject();
+        try {
+            jsonAddFavoris.put("iduser", sessionUser.getIdUser());
+            jsonAddFavoris.put("touristspot", touristSpotId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Process the response from the server
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse);
+                            JSONObject userData = jsonResponse.getJSONObject("success");
+                            String userId = userData.getString("_id");
+                            String username = userData.getString("nom");
+                            List<String > list = new ArrayList<>();
+                            JSONArray listFavoris = userData.getJSONArray("favoris");
+                            for (int i = 0; i < listFavoris.length(); i++) {
+                                String favori = listFavoris.getString(i);
+                                list.add(favori);
+                            }
+                            // Save user data to session
+                            sessionUser.setIdUser(userId);
+                            sessionUser.setUsername(username);
+                            sessionUser.setListFavoris(list);
+                            SessionUser.saveSession(detailPlaceActivity.this, userId);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Check if the error contains a network response
+                if (error.networkResponse != null) {
+                    int statusCode = error.networkResponse.statusCode;
+                    // Callback to indicate ajoutFavoris failure with the error message and status code
+                    sessionUser.setErroMessage(new String(error.networkResponse.data));
+
+                }
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public byte[] getBody() {
+                return jsonAddFavoris.toString().getBytes();
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        queue.add(stringRequest);
+    }
+
 }

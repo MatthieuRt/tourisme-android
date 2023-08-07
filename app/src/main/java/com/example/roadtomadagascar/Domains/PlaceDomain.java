@@ -103,6 +103,22 @@ public class PlaceDomain implements Serializable {
         this.pic = pic;
     }
 
+    @Override
+    public String toString() {
+        return "PlaceDomain{" +
+                "id='" + id + '\'' +
+                ", idCategorie='" + idCategorie + '\'' +
+                ", title='" + title + '\'' +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", distance=" + distance +
+                ", guide=" + guide +
+                ", score=" + score +
+                ", pic='" + pic + '\'' +
+                ", isPopulaire=" + isPopulaire +
+                '}';
+    }
+
     public boolean isPopulaire() {
         return isPopulaire;
     }
