@@ -100,7 +100,7 @@ public class ListActivity extends AppCompatActivity {
                         CategoryDomain c = (CategoryDomain) intent.getSerializableExtra("object");
                         ImageView im = findViewById(R.id.imageView8);
                         im.setVisibility(View.VISIBLE);
-                        int resourceId = getResources().getIdentifier(c.getPicPath(), "drawable", getPackageName());
+                        int resourceId = getResources().getIdentifier(c.getTitle(), "drawable", getPackageName());
                         im.setImageResource(resourceId);
                         actionTxt.setText(c.getTitle());
 
@@ -115,17 +115,17 @@ public class ListActivity extends AppCompatActivity {
                                             JSONArray array = new JSONArray(response);
                                             for(int i =0;i<array.length();i++){
                                                 JSONObject singleObject = array.getJSONObject(i);
-                                                PlaceDomain p = new PlaceDomain(
-                                                        singleObject.getString("_id"),
+                                                PlaceDomain p = new PlaceDomain(singleObject.getString("_id"),
                                                         singleObject.getString("idCategorie"),
                                                         singleObject.getString("name"),
                                                         singleObject.getString("location"),
                                                         singleObject.getString("description"),
                                                         singleObject.getInt("distance"),
-                                                        singleObject.getBoolean("isPopulaire"),
                                                         singleObject.getBoolean("guide"),
                                                         singleObject.getInt("score"),
-                                                        "pic1"
+                                                        singleObject.getString("url"),
+                                                        singleObject.getBoolean("isPopulaire"),
+                                                        singleObject.getString("url")
                                                 );
                                                 items.add(p);
                                             }

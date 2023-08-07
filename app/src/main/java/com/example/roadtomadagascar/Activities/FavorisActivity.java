@@ -80,10 +80,11 @@ public class FavorisActivity extends AppCompatActivity {
                                             singleObject.getString("location"),
                                             singleObject.getString("description"),
                                             singleObject.getInt("distance"),
-                                            singleObject.getBoolean("isPopulaire"),
                                             singleObject.getBoolean("guide"),
                                             singleObject.getInt("score"),
-                                            "pic1"
+                                            singleObject.getString("url"),
+                                            singleObject.getBoolean("isPopulaire"),
+                                            singleObject.getString("url")
                                     );
                                     System.out.println(p);
                                     listFavoris.add(p);

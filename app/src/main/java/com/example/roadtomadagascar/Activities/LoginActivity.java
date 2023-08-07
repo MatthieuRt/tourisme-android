@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onClick(){
         //Connexion
-        /*this.connexion.setOnClickListener(new View.OnClickListener() {
+        this.connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(Login.this, "Creation", Toast.LENGTH_SHORT).show();
@@ -71,14 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
-        this.connexion.setOnClickListener(new View.OnClickListener() {
+        });
+        /*this.connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, Menu.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //Creation
         this.creation.setOnClickListener(new View.OnClickListener() {

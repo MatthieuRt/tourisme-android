@@ -57,7 +57,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/actionTxt"
                     app:layout_constraintTop_toTopOf="@+id/actionTxt"
-                    app:srcCompat="@drawable/bell" />
+                    app:srcCompat="@drawable/fav" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
