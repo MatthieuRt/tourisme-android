@@ -87,9 +87,9 @@ public class detailPlaceActivity extends AppCompatActivity {
 
         ArrayList<HotelDomain> items = new ArrayList<HotelDomain>();
 
-        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
-        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
-        items.add(new HotelDomain("Andilana Beach","NosyBe","C'est un hôtel",2,true,4,"pic1",true,5000));
+        items.add(new HotelDomain("Royal Resort","Madagascar","Découvrez l'ultime refuge en bord de mer au sein de notre luxueux hôtel. Niché entre le sable doré et les eaux cristallines, cet établissement incarne l'élégance. Offrant des suites somptueuses avec vues panoramiques, un spa apaisant, une cuisine raffinée en front de mer et un service impeccable, une expérience côtière inoubliable vous attend.",2,true,4,"ifatybeachclub",true,5000));
+        items.add(new HotelDomain("Coco lodge","Madagascar","Plongez dans un paradis de raffinement à notre hôtel en bord de plage. Avec un design exquis inspiré de l'environnement côtier, des chambres et suites somptueuses offrant des vues spectaculaires, des restaurants primés mettant en avant une cuisine locale raffinée, et des équipements haut de gamme, profitez d'une expérience balnéaire luxueuse et inégalée.",2,true,4,"jardinduroy",true,5000));
+        items.add(new HotelDomain("Hôtel du rivage","Madagascar","Bienvenue à notre havre de luxe en front de mer, où l'élégance rencontre la plage. Des suites somptueuses avec balcons privatifs offrant des vues à couper le souffle sur l'océan, une cuisine gastronomique qui éveille les papilles, des piscines scintillantes et un service attentionné créent une retraite côtière exclusive, redéfinissant le confort et l'opulence.",2,true,4,"antsanitiaresort",true,5000));
 
         recyclerView = findViewById(R.id.view_hotels);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

@@ -48,6 +48,18 @@
                     app:layout_constraintStart_toEndOf="@+id/backBtn"
                     app:layout_constraintTop_toTopOf="@+id/backBtn" />
 
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/actionTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/actionTxt"
+                    app:layout_constraintTop_toTopOf="@+id/actionTxt"
+                    app:srcCompat="@drawable/lemur_say_hello_icon_cartoon_style_vector_35163464_removebg_preview" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView

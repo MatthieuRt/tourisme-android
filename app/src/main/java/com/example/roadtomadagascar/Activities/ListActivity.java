@@ -101,7 +101,7 @@ public class ListActivity extends AppCompatActivity {
                         ImageView im = findViewById(R.id.imageView8);
                         im.setVisibility(View.VISIBLE);
                         int resourceId = getResources().getIdentifier(c.getTitle(), "drawable", getPackageName());
-                        im.setImageResource(resourceId);
+                        //im.setImageResource(resourceId);
                         actionTxt.setText(c.getTitle());
 
                          url = "https://back-tourisme-git-main-matthieurt.vercel.app/touristspots/categorie/"+c.getId(); // Remplacez par l'URL de votre API
