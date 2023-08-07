@@ -37,7 +37,7 @@ public class FavorisActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPopular,recyclerViewCategory;
 
     private ImageView backBtn;
-    private List<PlaceDomain> listFavoris;
+    private ArrayList<PlaceDomain> listFavoris;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +52,9 @@ public class FavorisActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        listFavoris = new ArrayList<PlaceDomain>();
         ArrayList<PopularDomain> items = new ArrayList<>();
-        //items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
+        items.add(new PopularDomain("Plage d'Antsanitia","Majunga","Ceci est une description",2,true,4.8,"pic1",true,1000));
         //items.add(new PopularDomain("Allée des Baobabs","Morondava","Ceci est une description",1,false,5,"pic2",false,2500));
         //items.add(new PopularDomain("Foulpointe","Foulpointe","Ceci est une description",3,true,4.8,"pic1",true,1000));
 
@@ -63,6 +63,8 @@ public class FavorisActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         SessionUser sessionUser = SessionUser.getSessionUser();
         List<String> listFavorisUser = sessionUser.getListFavoris();
+        System.out.println("__________________________________________________________________________");
+        System.out.println(listFavorisUser);
         final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -73,6 +75,7 @@ public class FavorisActivity extends AppCompatActivity {
                             for (int i = 0; i < repList.length(); i++) {
                                 JSONObject singleObject = repList.getJSONObject(i);
                                 if(listFavorisUser.contains(singleObject.getString("_id"))){
+                                    System.out.println("***********************************************");
                                     PlaceDomain p = new PlaceDomain(
                                             singleObject.getString("_id"),
                                             singleObject.getString("idCategorie"),
@@ -106,7 +109,7 @@ public class FavorisActivity extends AppCompatActivity {
         queue.add(stringRequest);
         recyclerViewPopular= findViewById(R.id.view_pop);
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        listAdapter=new ListAdapter(listFavoris);
+        listAdapter=new ListAdapter(items);
         recyclerViewPopular.setAdapter(listAdapter);
     }
 }
