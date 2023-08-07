@@ -83,7 +83,7 @@ public class detailPlaceActivity extends AppCompatActivity {
         scoreTxt = findViewById(R.id.scoreTxt);
         picImg = findViewById(R.id.picImg);
         backBtn = findViewById(R.id.backBtn);
-        addFavoris = findViewById(R.id.addfavoris);
+        //addFavoris = findViewById(R.id.);
 
     }
     private void ajoutFavoris(String touristSpotId){
