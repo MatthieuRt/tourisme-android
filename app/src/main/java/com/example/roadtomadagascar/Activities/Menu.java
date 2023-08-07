@@ -110,7 +110,7 @@ public class Menu extends AppCompatActivity {
                                         singleObject.getInt("distance"),
                                         singleObject.getBoolean("guide"),
                                         singleObject.getInt("score"),
-                                        "pic1",
+                                        singleObject.getString("url"),
                                         singleObject.getBoolean("isPopulaire"),
                                         singleObject.getString("url")
                                 );
